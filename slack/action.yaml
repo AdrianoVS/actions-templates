@@ -1,0 +1,38 @@
+
+name: 'Slack Notification'
+description: "Sends notification to Slack Channel"
+
+inputs:
+  SLACK_CHANNEL:
+    description: "Slack Channel Name"
+    required: true
+  SLACK_COLOR:
+    description: "SLACK_COLOR"
+    required: true
+  SLACK_TITLE:
+    description: "SLACK_TITLE"
+    required: true
+  SLACK_MESSAGE:
+    description: "SLACK_MESSAGE"
+    required: true
+  SLACK_WEBHOOK:
+    description: "SLACK_WEBHOOK"
+    required: true
+  SLACK_FOOTER:
+    description: "SLACK_FOOTER"
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+  - uses: actions/checkout@v2 
+
+  - name: "Slack Notification"
+    uses: rtCamp/action-slack-notify@v2
+    env:
+      SLACK_CHANNEL: ${{ inputs.SLACK_CHANNEL }}
+      SLACK_COLOR: ${{ inputs.SLACK_COLOR }}
+      SLACK_TITLE: ${{ inputs.SLACK_TITLE }}
+      SLACK_MESSAGE: ${{ inputs.SLACK_MESSAGE }}
+      SLACK_WEBHOOK: ${{ inputs.SLACK_WEBHOOK }}
+      SLACK_FOOTER: ${{ inputs.SLACK_FOOTER }}

@@ -1,0 +1,30 @@
+name: "prepare-terraform"
+description: "prepares everything need for terraform to run"
+
+runs:
+  using: "composite"
+  steps:
+  # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Install the latest version of Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Initialize a new or existing Terraform working directory by creating initial files
+    - name: tf-init
+      shell: bash
+      run: make init
+
+    # Checks terraform format
+    - name: tf-fmt
+      shell: bash
+      run: make fmt
+
+    # Checks terraform syntax
+    - name: tf-validate
+      shell: bash
+      run: make validate
+
+   
