@@ -22,17 +22,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
-      # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3 
-
     - name: Build docker image
       shell: bash
-      run:  docker build -t $ {{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }} ${{ inputs.DOCKERFILE_PATH }} 
+      run:  docker build -t ${{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }} ${{ inputs.DOCKERFILE_PATH }} 
 
     - name: Push to Google Container Registry
       shell: bash
-      run:  docker push $ {{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }}
+      run:  docker push ${{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }}
       
 
 # runs:
