@@ -40,9 +40,9 @@ runs:
         service_account: '${{ inputs.GCP_SERVICE_ACCOUNT }}@${{ inputs.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
         create_credentials_file: ${{ inputs.create_credentials_file }}
 
-    - name: 'docker-login'
-      uses: 'docker/login-action@v1'
-      with:
-        registry: 'gcr.io' # or REGION-docker.pkg.dev
-        username: 'oauth2accesstoken'
-        password: '${{ steps.auth.outputs.access_token }}'
+    # - name: 'docker-login'
+    #   uses: 'docker/login-action@v1'
+    #   with:
+    #     registry: 'gcr.io' # or REGION-docker.pkg.dev
+    #     username: 'oauth2accesstoken'
+    #     password: '${{ steps.auth.outputs.access_token }}'
