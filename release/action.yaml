@@ -1,0 +1,22 @@
+
+name: 'release'
+description: "Create Release"
+
+inputs:
+  RELEASE_VERSION:
+    description: "Version Number of the release"
+    required: true
+  GITHUB_TOKEN:
+    description: "GITHUB TOKEN"
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v2 
+    - name: release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
+      with:
+        RELEASE_VERSION: ${{ inputs.VERSION_TAG }}
