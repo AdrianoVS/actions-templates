@@ -25,7 +25,7 @@ runs:
 
     - name: Push to Google Container Registry
       shell: bash
-      run:  docker push ${{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }}
+      run:  docker push gcr.io/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }}
       
 
 # runs:
