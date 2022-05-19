@@ -22,7 +22,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: actions/checkout@v2 
+      # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3 
 
     - name: Build docker image
       shell: bash
