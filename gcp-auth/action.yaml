@@ -5,12 +5,13 @@ inputs:
   token_format:
     description: 'GCP access_token'
     required: true
+    default: access_token
   access_token_lifetime:
     description: 'GCP access_token lifetime in seconds'
     required: true
-  # create_credentials_file:
-  #   description: 'Indicates whether to create credentials_file'
-  #   required: true
+  create_credentials_file:
+    description: 'Indicates whether to create credentials_file'
+    required: true
   GCP_PROJECT_NUMBER:
     description: 'GCP project number'
     required: true
@@ -31,13 +32,13 @@ runs:
   using: "composite"
   steps:
     - name: 'gcp-auth'
-      uses: 'google-github-actions/auth@v0.4.0'
+      uses: 'google-github-actions/auth@latest'
       with:
         token_format: ${{ inputs.token_format }}
         access_token_lifetime: ${{ inputs.access_token_lifetime }}
         workload_identity_provider: 'projects/${{ inputs.GCP_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ inputs.GCP_IDENTITY_PROVIDER_POOL }}/providers/${{ inputs.GCP_IDENTITY_PROVIDER }}'
         service_account: '${{ inputs.GCP_SERVICE_ACCOUNT }}@${{ inputs.GCP_PROJECT_ID }}.iam.gserviceaccount.com'
-        # create_credentials_file: ${{ inputs.create_credentials_file }}
+        create_credentials_file: ${{ inputs.create_credentials_file }}
 
     - name: 'docker-login'
       uses: 'docker/login-action@v1'
