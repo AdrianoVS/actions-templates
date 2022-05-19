@@ -8,9 +8,6 @@ inputs:
   IMAGE_NAME:
     description: "Name of the docker image in the Container registry"
     required: true
-  GCR_ADDRESS:
-    description: "Address of the Container registry"
-    required: true
   GCP_PROJECT_ID:
     description: 'GCP project ID'
     required: true
@@ -24,7 +21,7 @@ runs:
   steps:
     - name: Build docker image
       shell: bash
-      run:  docker build -t ${{ inputs.GCR_ADDRESS }}/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }} ${{ inputs.DOCKERFILE_PATH }} 
+      run:  docker build -t gcr.io/${{ inputs.GCP_PROJECT_ID }}/${{ inputs.IMAGE_NAME}}:${{ inputs.IMAGE_TAG }} ${{ inputs.DOCKERFILE_PATH }} 
 
     - name: Push to Google Container Registry
       shell: bash
