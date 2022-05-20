@@ -25,9 +25,11 @@ runs:
       uses: 'google-github-actions/setup-gcloud@v0'
 
     - name: 'Use gcloud CLI'
+      shell: bash
       run: 'gcloud info'
     
     - name: docker-login
+      shell: bash
       run: |
         gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io
       with:
