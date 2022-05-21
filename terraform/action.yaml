@@ -4,10 +4,6 @@ description: "prepares everything need for terraform to run"
 runs:
   using: "composite"
   steps:
-  # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
-
     # Install the latest version of Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
